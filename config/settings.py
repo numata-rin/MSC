@@ -47,12 +47,14 @@ DEBUG = env_bool("DEBUG", True)
 
 ALLOWED_HOSTS = env_list(
     "ALLOWED_HOSTS",
-    "localhost,127.0.0.1"
+    "localhost,127.0.0.1",
+    "https://msc-a8rz.onrender.com",
 )
 
 CSRF_TRUSTED_ORIGINS = env_list(
     "CSRF_TRUSTED_ORIGINS",
-    "http://localhost:8000,http://127.0.0.1:8000"
+    "http://localhost:8000,http://127.0.0.1:8000",
+    "https://msc-a8rz.onrender.com",
 )
 
 
