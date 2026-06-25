@@ -5,10 +5,18 @@
   <meta charset="UTF-8" />
   <title>麻雀得点計算機</title>
   <link rel="stylesheet" href="{% static 'MSC/css/index.css' %}">
-  <link rel="stylesheet" href="{% static 'MSC/css/style.css' %}">
 </head>
 <body>
-  <div class="header">麻雀得点計算機</div>
+
+  <div class="header">
+    <div class="header-center">麻雀得点計算機</div>
+    <div class="header-buttons">
+
+      <a href="{% url 'MSC:how_to_use' %}"><button class="help-button">使い方</button></a>
+      <a href="{% url 'MSC:scocal_map' %}"><button class="help-button">得点早見表</button></a>
+
+    </div>
+  </div>
 
   <div class="section tokuten">
     {% include 'MSC/score_result.html' %}

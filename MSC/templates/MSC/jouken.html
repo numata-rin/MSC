@@ -1,70 +1,112 @@
 {% load static %}
 
 <div class="container">
-    <div class="section">
-      <div class="label">場風 / 自風</div>
-      <div class="btn-group">
-        <div>場風:</div>
-        <button class="btn selected">東</button>
-        <button class="btn">南</button>
-        <button class="btn">西</button>
-        <button class="btn">北</button>
-        <div style="width: 20px;"></div>
-        <div>自風:</div>
-        <button class="btn selected">東</button>
-        <button class="btn">南</button>
-        <button class="btn">西</button>
-        <button class="btn">北</button>
-      </div>
-    </div>
 
-    <div class="section">
-      <div class="label">供託 / 積棒</div>
-      <div class="btn-group">
-        <div class="counter">供託:
-          <button class="btn">−</button>
-          <input type="number" value="0" />
-          <button class="btn">＋</button>
-        </div>
-        <div class="counter">積棒:
-          <button class="btn">−</button>
-          <input type="number" value="0" />
-          <button class="btn">＋</button>
-        </div>
+  <div class="section">
+  <div class="section">
+    <div class="label">供託 / 積棒</div>
+    <div class="btn-group" data-skip-auto-select>
+      <div class="counter">
+        <span>供託:</span>
+        <button class="btn count-btn" data-target="kyotaku" data-action="decrease">−</button>
+        <input type="number" id="kyotaku-count" value="0" min="0" readonly />
+        <button class="btn count-btn" data-target="kyotaku" data-action="increase">＋</button>
+      </div>
+      <div class="counter">
+        <span>積棒:</span>
+        <button class="btn count-btn" data-target="honba" data-action="decrease">−</button>
+        <input type="number" id="honba-count" value="0" min="0" readonly />
+        <button class="btn count-btn" data-target="honba" data-action="increase">＋</button>
       </div>
     </div>
   </div>
 
-  <div class="container options">
+  <div class="section">
+    <div class="label">場風 / 自風</div>
+    <div class="btn-group">
+      <div>場風:</div>
+      <button class="btn wind-btn" data-wind-type="prevalent" data-value="east">東</button>
+      <button class="btn wind-btn" data-wind-type="prevalent" data-value="south">南</button>
+      <button class="btn wind-btn" data-wind-type="prevalent" data-value="west">西</button>
+      <button class="btn wind-btn" data-wind-type="prevalent" data-value="north">北</button>
+      <div style="width: 20px;"></div>
+      <div>自風:</div>
+      <button class="btn wind-btn" data-wind-type="seat" data-value="east">東</button>
+      <button class="btn wind-btn" data-wind-type="seat" data-value="south">南</button>
+      <button class="btn wind-btn" data-wind-type="seat" data-value="west">西</button>
+      <button class="btn wind-btn" data-wind-type="seat" data-value="north">北</button>
+    </div>
+  </div>
+
+  <div class="option-row">
+    <div class="option-group">
+      <div class="label">親・子</div>
+      <div class="btnn-group">
+        <button class="btn player-type-btn" data-value="parent">親</button>
+        <button class="btn player-type-btn" data-value="child">子</button>
+      </div>
+    </div>
+
     <div class="option-group">
       <div class="label">立直</div>
-      <button class="btn selected">なし</button>
-      <button class="btn">立直</button>
-      <button class="btn">ダブル立直</button>
+      <div class="btnn-group">
+        <button class="btn riichi-btn" data-value="none">なし</button>
+        <button class="btn riichi-btn" data-value="riichi">立直</button>
+        <button class="btn riichi-btn" data-value="double">ダブル立直</button>
+      </div>
     </div>
 
     <div class="option-group">
       <div class="label">一発</div>
-      <button class="btn selected">なし</button>
-      <button class="btn">一発</button>
-    </div>
-
-    <div class="option-group">
-      <div class="label">嶺上開花</div>
-      <button class="btn selected">なし</button>
-      <button class="btn">嶺上開花</button>
-    </div>
-
-    <div class="option-group">
-      <div class="label">搶槓</div>
-      <button class="btn selected">なし</button>
-      <button class="btn">搶槓</button>
+      <div class="btnn-group">
+        <button class="btn ippatsu-btn" data-value="false">なし</button>
+        <button class="btn ippatsu-btn" data-value="true">一発</button>
+      </div>
     </div>
   </div>
 
-  <button id="condition-submit-btn" type="button">送信</button>
 
-  <script src="../../static/MSC/js/btn.js"></script>
-  <script src="{% static 'MSC/js/condition.js' %}"></script>
+  <div class="option-row">
+    <div class="option-group">
+      <div class="label">嶺上開花</div>
+      <div class="btnn-group">
+        <button class="btn rinshan-btn selected" data-value="false">なし</button>
+        <button class="btn rinshan-btn" data-value="true">あり</button>
+      </div>
+    </div>
 
-  
+    <div class="option-group">
+      <div class="label">槍槓</div>
+      <div class="btnn-group">
+        <button class="btn chankan-btn selected" data-value="false">なし</button>
+        <button class="btn chankan-btn" data-value="true">あり</button>
+      </div>
+    </div>
+
+    <div class="option-group">
+      <div class="label">海底河底</div>
+      <div class="btnn-group">
+        <button class="btn haitei-btn selected" data-value="false">なし</button>
+        <button class="btn haitei-btn" data-value="true">あり</button>
+      </div>
+    </div>
+
+    <div class="option-group">
+      <div class="label">天和/地和</div>
+      <div class="btnn-group">
+        <button class="btn tenho-btn selected" data-value="false">なし</button>
+        <button class="btn tenho-btn" data-value="true">あり</button>
+      </div>
+    </div>
+  </div>
+
+
+   <div class="section">
+     <button id="condition-submit-btn" type="button">送信</button>
+   </div>
+ 
+   <div class="section">
+    <button id="condition-reset-btn" type="button" class ="btn">リセット</button> </div>
+   </div>
+<script src="{% static 'MSC/js/condition.js' %}"></script>
+<link rel="stylesheet" href="{% static 'MSC/css/jouken.css' %}">
